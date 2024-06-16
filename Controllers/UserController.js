@@ -1,6 +1,5 @@
 import UserModel from "../Models/userModel.js";
 import LinkModel from "../Models/linkModel.js";
-import linkModel from "../Models/linkModel.js";
 
 const UserController = {
     getList: async (req, res) => {
@@ -23,25 +22,62 @@ const UserController = {
             res.status(400).json({ message: e.message });
         }
     },
+    // add: async (req, res) => {
+    //     const { name, email, password, links } = req.body;
+    
+    //     try {
+    //       // יצירת המשתמש
+    //       const user = await userModel.create({ name, email, password });
+    
+    //       // מערך של הקישורים שיצרנו
+    //       const createdLinks = await Link.insertMany(
+    //         links.map((link) => ({
+    //           originalUrl: link.originalUrl,
+    //         }))
+    //       );
+    
+    //       // מעבר על כל הקישורים שנוצרו וקישורם למשתמש
+    //       for (const link of createdLinks) {
+    //         user.links.push(link._id);
+    //         // link.users.push(user._id);
+    //         await link.save();
+    //       }
+    
+    //       // שמירת המשתמש במסד הנתונים
+    //       await user.save();
+    
+    //       res.json(user);
+        
+    //     } catch (e) {
+    //       res.status(400).json({ message: e.message });
+    //     }
+    //   }
     add: async (req, res) => {
+        console.log('-1')
+
         const { name, email, password, links } = req.body;
         try {
+            console.log("0")
             const newUser = await UserModel.create({ name, email, password });
+            console.log("1")
             const newLinks = await LinkModel.insertMany(
                 links.map((link) => ({
                     originalUrl: link.originalUrl
                 }))
             );
+            console.log("2")
             for (const link in newLinks) {
                 newUser.links.push(link._id)
                 await LinkModel.save()
             }
+            console.log("3")
             await user.save();
             res.json(newUser);
         } catch (e) {
             res.status(400).json({ message: e.message });
         }
-    },
+    }
+    ,
 
     update: async (req, res) => {
         const { id } = req.params;

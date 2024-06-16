@@ -13,4 +13,4 @@ const LinkSchema = mongoose.Schema({
   }
 });
 
-export default mongoose.model("Links", LinkSchema);
+export default mongoose.model("Link", LinkSchema);

@@ -24,9 +24,9 @@ const UserSchema = mongoose.Schema({
     // links:[]
     links: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'links',
-        default: []
+        ref: 'Link'
+
     }]
 });
 
-export default mongoose.model("Users", UserSchema);
+export default mongoose.model("User", UserSchema);
