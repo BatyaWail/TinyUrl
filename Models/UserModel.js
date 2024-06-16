@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const UserSchema = mongoose.Schema({
-    // _id: {
-    //     type: Number,
-    //     // required: true,
-    //     // default: 0
-    // },
     name: {
         type: String,
         required: true,
@@ -21,7 +16,6 @@ const UserSchema = mongoose.Schema({
         required: true,
         default: "123"
     },
-    // links:[]
     links: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Link'
